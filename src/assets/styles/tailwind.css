@@ -47,6 +47,7 @@ Remove the margin in all browsers.
 
 body {
   margin: 0;
+  background-color: #0a0a0a; 
 }
 
 /**
@@ -1184,6 +1185,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgba(249, 115, 22, var(--tw-bg-opacity));
 }
+.active\:bg-orange-600:active {
+  --tw-bg-opacity: 1;
+  background-color: rgba(200, 90, 50, var(--tw-bg-opacity));
+}
 
 .bg-red-200 {
   --tw-bg-opacity: 1;
@@ -1239,7 +1244,14 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgba(30, 41, 59, var(--tw-bg-opacity));
 }
-
+.bg-grey{
+  --tw-bg-opacity: 1;
+  background-color: rgba(21, 21, 21,  var(--tw-bg-opacity));
+}
+.bg-grey-800{
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+}
 .active\:bg-indigo-600:active {
   --tw-bg-opacity: 1;
   background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
@@ -1485,7 +1497,9 @@ select {
 }
 
 .font-semibold {
-  font-weight: 600;
+  font-weight: 800;
+  font-style:normal;
+  font-size: xx-large;
 }
 
 .font-bold {
@@ -1728,6 +1742,8 @@ select {
 
 .mt-4 {
   margin-top: 1rem;
+  font-style: oblique;
+  font-size:x-large;
 }
 
 .mr-4 {
@@ -2414,6 +2430,7 @@ select {
   color: rgba(148, 163, 184, var(--tw-text-opacity));
 }
 
+
 .text-blueGray-500 {
   --tw-text-opacity: 1;
   color: rgba(100, 116, 139, var(--tw-text-opacity));
@@ -2432,6 +2449,10 @@ select {
 .text-blueGray-800 {
   --tw-text-opacity: 1;
   color: rgba(30, 41, 59, var(--tw-text-opacity));
+}
+.hover\:text-orange-500:hover {
+  --tw-text-opacity: 1;
+  color: rgba(249, 115, 22, var(--tw-text-opacity));
 }
 
 .hover\:text-lightBlue-600:hover {
@@ -3038,5 +3059,193 @@ select {
 
 @media (min-width: 1536px) {
 }
+
+
+/* pour la transition */
+.transition-transform {
+  transition-property: transform !important;
+}
+
+.duration-300 {
+  transition-duration: 0.1ms !important;
+}
+.translate-y-0 {
+  transform: translateY(0);
+}
+
+.-translate-y-full {
+  transform: translateY(-100%);
+}
+strong{
+  color: #f36100;
+}
+
+.ps-item {
+   display: flex;
+  flex-direction: column; /* déjà en place si tu veux garder le contenu vertical */
+  justify-content: space-between; /* pour que le contenu soit bien réparti */
+  height: 100%; 
+  background: #151515;
+  text-align: center;
+  padding: 40px 30px 52px;
+  border: 1px solid #464646;
+  transition: all 0.5s;
+  margin-bottom: 30px;
+  position: relative;
+ 
+}
+
+
+.ps-item:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.ps-item:hover h1 {
+  color: #111111;
+}
+
+.ps-item:hover .pi-price span {
+  color: #444444;
+}
+
+.ps-item:hover ul li {
+  color: #111111;
+  font-weight: 600;
+}
+
+.ps-item:hover .primary-btn.pricing-btn {
+  background: #f36100;
+}
+
+.ps-item:hover .thumb-icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ps-item h1 {
+  font-size: 28px;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.ps-item .pi-price {
+  margin-bottom: 30px;
+}
+
+.ps-item .pi-price h2 {
+  font-size: 60px;
+  color: #f36100;
+  font-weight: 600;
+}
+
+.ps-item .pi-price span {
+  color: #c4c4c4;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ps-item ul {
+  margin-bottom: 40px;
+}
+
+.ps-item ul li {
+  font-size: 14px;
+  color: #c4c4c4;
+  line-height: 32px;
+  list-style: none;
+}
+
+.ps-item .primary-btn.pricing-btn {
+  display: block;
+  background: #333333;
+}
+
+.ps-item .thumb-icon {
+  font-size: 48px;
+  color: #f36100;
+  position: absolute;
+  left: 50px;
+  bottom: 120px;
+  opacity: 0;
+  visibility: hidden;
+}
+.enroll-btn {
+  display: inline-block;
+  background-color: #f36100; /* orange vif */
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.enroll-btn:hover {
+  background-color: #d35400; /* orange plus foncé */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.enroll-btn:active {
+  background-color: #b84300; /* encore plus foncé au clic */
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-effect {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #f97316; /* orange-500 */
+  width: 0;
+  animation:
+    typing 2s steps(20, end) forwards,
+    blink .75s step-end infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+  
+}
+
+
+
 
 
