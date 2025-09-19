@@ -64,17 +64,17 @@ export default function Navbar(props) {
   </li>
   
   <li className="px-4">
-    <Link to="/contact" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
+    <Link to="/Team" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
       Our team
     </Link>
   </li>
   <li className="px-4">
-    <Link to="/Landing" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
+    <Link to="/" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
       Classes
     </Link>
   </li>
   <li className="px-4">
-    <Link to="/Landing" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
+    <Link to="/Contact" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
       Contact
     </Link>
   </li>

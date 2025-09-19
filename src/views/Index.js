@@ -17,17 +17,17 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 export default function Index() {
   const features = [
     {
-      icon: <FaBiking size={30} className="text-orange-500" />,
+      icon: <FaBiking size={30} className="text-white" />,
       title: "Modern equipment",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore facilisis.",
     },
     {
-      icon: <FaDumbbell size={30} className="text-orange-500" />,
+      icon: <FaDumbbell size={30} className="text-white" />,
       title: "Professional training plan",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore facilisis.",
     },
     {
-      icon: <FaHeart size={30} className="text-orange-500" />,
+      icon: <FaHeart size={30} className="text-white" />,
       title: "Unique to your needs",
       desc: "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
     },
@@ -84,7 +84,7 @@ export default function Index() {
           </div>
         </div>
       </section>
-      <section className="py-12 bg-gray-100">
+    <section className="py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">
@@ -92,26 +92,37 @@ export default function Index() {
           <span className="text-orange-500 uppercase tracking-wider text-sm">Why choose us?</span>
           <h2 className="text-4xl text-white font-bold mt-2">PUSH YOUR LIMITS FORWARD</h2>
         </div>
-
-        {/* Features Grid */}
-        <div className="flex flex-wrap justify-center gap-8">
-  {features.map((feature, index) => (
-    <div
-      key={index}
-      className="w-full sm:w-1/3 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center flex flex-col justify-start"
-    >
-      <div className="flex justify-center">{feature.icon}</div>
-      <h4 className="text-xl text-white font-semibold mb-2 mt-4">{feature.title}</h4>
-      <p className="text-white text-sm">{feature.desc}</p>
-    </div>
-  ))}
+        
+<div className="pb-20  -mt-36">
+  <div className="container  mx-auto px-4">
+    <div className="flex flex-wrap ">
+      {features.map((feature, index) => (
+        <div
+          key={index}
+          className="lg:pt-12 w-full md:w-4/12 px-4 text-center "
+        >
+          <div className="relative hover:-mt-4  border flex flex-col min-w-0 break-words text-white w-full mb-8 shadow-lg ">
+            <div className="px-4 py-5 flex-auto">
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-orange-500">
+  {feature.icon}
 </div>
-      </div>
-    </section>
+
+              <h6 className="text-xl font-semibold">{feature.title}</h6>
+              <p className="mt-2 mb-4 text-white">{feature.desc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+</div>
+      </section>
+
     <section className="py-8 bg-white bg-opacity-90">
       
 </section>
-      <section className=" md:mt-40 pb-40 relative bg-grey">
+      <section className=" md:mt-26 pb-40 relative bg-grey-800">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
           style={{ transform: "translateZ(0)" }}
@@ -135,7 +146,7 @@ export default function Index() {
           {/* Section Title */}
           <br/>
           <div className="text-center mb-16">
-            <span className="text-orange-500 uppercase tracking-wider text-sm">Our classes</span>
+            <span className="text-orange-500 uppercase tracking-wider text-sm ">Our classes</span>
             <h2 className="text-4xl text-white font-bold mt-2">WHAT WE CAN OFFER</h2>
           </div>
         <br/>
@@ -327,7 +338,7 @@ export default function Index() {
                       <div className="col-lg-4 col-md-8">
                         <div className="ps-item">
                         <h1>Class drop-in</h1>
-                        <div class="pi-price">
+                        <div className="pi-price">
                             <h2>30 Dt</h2>
                             <span>SINGLE CLASS</span>
                         </div>
@@ -363,7 +374,7 @@ export default function Index() {
                       <div className="col-lg-4 col-md-8">
                         <div className="ps-item">
                         <h1>12 Month unlimited</h1>
-                        <div class="pi-price">
+                        <div className="pi-price">
                             <h2>300 Dt</h2>
                             <span>SINGLE CLASS</span>
                         </div>
@@ -399,7 +410,7 @@ export default function Index() {
                       <div className="col-lg-4 col-md-8">
                         <div className="ps-item">
                         <h1>6 Month unlimited</h1>
-                        <div class="pi-price">
+                        <div className="pi-price">
                             <h2> 160 Dt</h2>
                             <span>SINGLE CLASS</span>
                         </div>
@@ -434,16 +445,9 @@ export default function Index() {
           </div>
         </div>
       </section>
-        
-          
-        
-
-        
       </section> 
         <Footer/>
  
-      
-      
     </>
   );
 }
