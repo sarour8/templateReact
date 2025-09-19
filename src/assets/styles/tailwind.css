@@ -3080,7 +3080,7 @@ strong{
   color: #f36100;
 }
 
-.ps-item {
+.ps-item  {
    display: flex;
   flex-direction: column; /* déjà en place si tu veux garder le contenu vertical */
   justify-content: space-between; /* pour que le contenu soit bien réparti */
@@ -3096,7 +3096,7 @@ strong{
 }
 
 
-.ps-item:hover {
+.ps-item:hover  {
   background: #ffffff;
   border-color: #ffffff;
 }

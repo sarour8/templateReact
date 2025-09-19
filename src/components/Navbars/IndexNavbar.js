@@ -69,7 +69,7 @@ export default function Navbar(props) {
     </Link>
   </li>
   <li className="px-4">
-    <Link to="/" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
+    <Link to="/Classes" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
       Classes
     </Link>
   </li>

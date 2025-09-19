@@ -13,9 +13,10 @@ import Auth from "layouts/Auth.js";
 // views without layouts
 
 import Team from "views/Team.js";
-import Contact from "views/Contact";
+import Contact from "views/Contact.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
+import Classes from "views/Classes.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Route path="/auth" component={Auth} />
       {/* add routes without layouts */}
       <Route path="/Team" exact component={Team} />
+      <Route path="/Classes" exact component={Classes} />
       <Route path="/Contact" exact component={Contact} />
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />

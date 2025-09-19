@@ -32,7 +32,7 @@ export default function Landing() {
           <div className="container relative mx-auto">
             <div className="items-center flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                <div className="pr-12">
+                <div className="pr-12 fadeInUp ">
                   <h2 className="text-white font-semibold text-5xl">
                     The passionate trainers behind your fitness journey.
                   </h2>
@@ -70,7 +70,7 @@ export default function Landing() {
         <div className="container mx-auto mt-16 ">
           <div className="flex flex-wrap items-center">
             <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto  ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800">
+              <div className="  relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800 ">
                 <img
                 alt="..."
                 src={boxImg}
@@ -263,11 +263,11 @@ export default function Landing() {
               </div>
             </div>
             <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800">
+              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800 ">
                 <img
                 alt="..."
                 src={groupImg}
-                className="w-full align-middle rounded-t-lg"
+                className="w-full align-middle rounded-t-lg transition-transform duration-500 ease-in-out transform group-hover:scale-105"
               />
                 <blockquote className="relative p-8 mb-4">
                   <svg
@@ -368,6 +368,8 @@ export default function Landing() {
             </div>
           </div>
         </div>
+        <br/>
+        <br/>
         
 
         {/*<section className="pb-20 bg-grey -mt-24">
@@ -475,7 +477,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-        </section>*/}
+        </section>
 
         <section className="relative py-20">
           <div
@@ -867,7 +869,8 @@ export default function Landing() {
               </div>
             </div>
           </div>
-        </section>
+        </section>*/}
+        <br/>
       </main>
       <Footer />
     </>
