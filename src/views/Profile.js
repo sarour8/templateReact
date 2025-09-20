@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/ProfileNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 export default function Profile() {
@@ -12,8 +12,8 @@ export default function Profile() {
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
+             //backgroundImage: `url(${require("assets/img/classes/class-4.jpg").default})`,
+             backgroundColor: "black",
             }}
           >
             <span
@@ -35,22 +35,22 @@ export default function Profile() {
               y="0"
             >
               <polygon
-                className="text-blueGray-200 fill-current"
+                className="text-black fill-current"
                 points="2560 0 2560 100 0 100"
               ></polygon>
             </svg>
           </div>
         </section>
-        <section className="relative py-16 bg-blueGray-200">
+        <section className="relative py-16 bg-black">
           <div className="container mx-auto px-4">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+            <div className="relative flex flex-col min-w-0 break-words bg-grey w-full mb-6 shadow-xl rounded-lg -mt-64">
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div className="relative">
                       <img
                         alt="..."
-                        src={require("assets/img/team-2-800x800.jpg").default}
+                        src={require("assets/img/members/member1.jpg").default}
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                       />
                     </div>
@@ -94,8 +94,49 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
-                <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                <div className="mt-12 flex flex-col md:flex-row justify-center items-start gap-10 bg-gray-900 p-6 rounded-lg shadow-lg">
+  {/* Colonne gauche */}
+  <div className="w-full md:w-5/12 pr-6  flex flex-col border-r border-white/30">
+    <h3 className="text-4xl font-semibold mb-4 text-white">
+      Jenna Stones
+    </h3>
+    <div className="text-sm mb-3 text-white flex items-center">
+      <i className="fas fa-map-marker-alt mr-2 text-orange-500"></i>
+      Los Angeles, California
+    </div>
+    <div className="mb-3 text-white flex items-center">
+      <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
+      +1 234 567 890
+    </div>
+    <div className="mb-3 text-white flex items-center">
+      <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
+      jenna.stones@gmail.com
+    </div>
+  </div>
+
+  {/* Colonne droite */}
+  <div className="w-full md:w-5/12 pl-6  flex flex-col">
+    <div className="mb-3 text-white flex items-center">
+      <span className="font-bold text-white mr-2">Assigned Coach:</span>
+      John Doe
+    </div>
+    <div className="mb-3 text-white flex items-center">
+      <span className="font-bold text-white mr-2">Goal:</span>
+      Improve Flexibility
+    </div>
+    <div className="mb-3 text-white">
+      <span className="font-bold text-white mr-2">Progress:</span>
+      <div className="w-full bg-gray-700 rounded-full h-4 mt-1 overflow-hidden">
+        <div className="bg-orange-500 h-4 rounded-full" style={{ width: '60%' }}></div>
+      </div>
+      <span className="text-sm text-white mt-1 block">60%</span>
+    </div>
+    
+  </div>
+</div>
+
+
+                  {/*<h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     Jenna Stones
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
@@ -129,11 +170,11 @@ export default function Profile() {
                         Show more
                       </a>
                     </div>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             </div>
-          </div>
+          
         </section>
       </main>
       <Footer />

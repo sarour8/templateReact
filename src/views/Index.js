@@ -146,7 +146,7 @@ export default function Index() {
           {/* Section Title */}
           <br/>
           <div className="text-center mb-16">
-            <span className="text-orange-500 uppercase tracking-wider text-sm ">Our classes</span>
+            <span className="text-orange-500 uppercase tracking-wider text-sm ">Our Services</span>
             <h2 className="text-4xl text-white font-bold mt-2">WHAT WE CAN OFFER</h2>
           </div>
         <br/>

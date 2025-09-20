@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//import { motion } from "framer-motion";
+import { useState } from "react";
 // components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 //import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import yogaImg from "assets/img/team/team1.jpg"
-import sportImg from "assets/img/team/team2.jpg"
-import boxImg from "assets/img/team/team3.jpg"
-import groupImg from "assets/img/team/team4.jpg"
-import poidsImg from "assets/img/team/team5.jpg"
-import lastImg from "assets/img/team/team6.jpg"
 
-export default function Landing() {
+import boxImg from "assets/img/classes/class-6.jpg"
+
+
+
+
+export default function Classes() {
+  
   return (
     <>
       <IndexNavbar transparent />
@@ -21,7 +23,7 @@ export default function Landing() {
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
-             backgroundImage: `url(${require("assets/img/contact/groupe.jpg").default})`,
+             backgroundImage: `url(${require("assets/img/classes/class-6.jpg").default})`,
             }}
           >
             <span
@@ -62,43 +64,25 @@ export default function Landing() {
           </div>
         </div>
          <br/>
-        <section className="relative py-20">
-          <div
-            className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-            style={{ transform: "translateZ(0)" }}
-          >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-white fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
-          </div>
+        {/*<section className="relative py-20">
+          
 
           <div className="container mx-auto px-4">
             <div className="items-center flex flex-wrap">
               <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
                 <img
-                  alt="..."
-                  className="max-w-full rounded-lg shadow-lg"
-                  src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                />
+                alt="..."
+                src={boxImg}
+                className="w-full align-middle rounded-t-lg"
+              />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">
                   <div className="text-lightBlue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-lightBlue-300">
-                    <i className="fas fa-rocket text-xl"></i>
+                    
                   </div>
-                  <h3 className="text-3xl font-semibold">A growing company</h3>
-                  <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
+                  <h3 className="text-3xl font-semibold text-white -mt-24">Strength Training</h3>
+                  <p className="mt-4 text-lg leading-relaxed text-white">
                     The extension comes with three pre-built pages to help you
                     get started faster. You can change the text and images and
                     you're good to go.
@@ -151,308 +135,161 @@ export default function Landing() {
               </div>
             </div>
           </div>
-        </section>   
-        <div className="container mx-auto mt-16 ">
-          <div className="flex flex-wrap items-center">
-            <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto  ">
-              <div className="  relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800 ">
-                <img
-                alt="..."
-                src={boxImg}
-                className="w-full align-middle rounded-t-lg"
-              />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className=" fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold text-white text-orange-500 uppercase">
-                    Sarra Elmaher
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    INDOOR CYCLING
-                  </p>
-                  <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                </blockquote>
-              </div>
-            </div>
-            
-                        <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800">
-                <img
-                alt="..."
-                src={sportImg}
-                className="w-full align-middle rounded-t-lg"
-              />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className="bg-grey fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold  text-orange-500 uppercase">
-                    Youssef Masseoud 
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white ">
-                    KETTLEBELL POWER
-                  </p>
-                  <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                </blockquote>
-              </div>
-            </div>
-                        <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800">
-                <img
-                alt="..."
-                src={yogaImg}
-                className="w-full align-middle rounded-t-lg "
-              />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className=" fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold text-orange-500 uppercase ">
-                    Youssef Masseoud 
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    YOGA
-                  </p>
-                  <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                </blockquote>
-              </div>
-            </div>
-                        <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800">
-                <img
-                alt="..."
-                src={poidsImg}
-                className="w-full align-middle rounded-t-lg"
-              />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className=" fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold text-orange-500 uppercase">
-                    Sarra Elmaher
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    BOXING
-                  </p>
-                  <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                </blockquote>
-              </div>
-            </div>
-            <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800 ">
-                <img
-                alt="..."
-                src={groupImg}
-                className="w-full align-middle rounded-t-lg transition-transform duration-500 ease-in-out transform group-hover:scale-105"
-              />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className=" fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold text-orange-500 uppercase">
-                  Youssef Masseoud 
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    BOXING
-                  </p>
-                  <div className="mt-6">
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-instagram"></i>
-                      </button>
-                    </div>
-                
-                </blockquote>
-              </div>
-            </div>
-            <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto ">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-grey-800">
-                <img
-                alt="..."
-                src={lastImg}
-                className="w-full align-middle rounded-t-lg"
-              />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className=" fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold text-orange-500 uppercase">
-                  Sarra Elmaher
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    WIEGHTLIFTING
-                  </p>
-                  <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                
-                </blockquote>
-              </div>
+        </section>  */}
+        <section className="class-timetable-section spad justify-center">
+      <div className="container">
+        <div className="row justify-center">
+          <div className="text-center mb-16">
+          <br/>
+          
+          <h4 className="text-4xl text-white font-bold mt-2 uppercase">Classes timetable</h4>
+        </div>
+          <br/>
+          
+        </div>
+
+        <div className="row justify-center">
+          <div className="col-lg-12 d-flex justify-center">
+            <div className="class-timetable overflow-auto">
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Ligne 1 */}
+                  <tr>
+                    <td className="class-time">6.00am - 8.00am</td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>WEIGHT LOOSE</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Cardio</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>Yoga</h5>
+                      <span>Keaf Shen</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Fitness</h5>
+                      <span>Kimberly Stone</span>
+                    </td>
+                    <td className="dark-bg blank-td"></td>
+                    <td className="hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Boxing</h5>
+                      <span>Rachel Adam</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>Body Building</h5>
+                      <span>Robert Cage</span>
+                    </td>
+                  </tr>
+
+                  {/* Ligne 2 */}
+                  <tr>
+                    <td className="class-time">10.00am - 12.00pm</td>
+                    <td className="blank-td"></td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Fitness</h5>
+                      <span>Kimberly Stone</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>WEIGHT LOOSE</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Cardio</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>Body Building</h5>
+                      <span>Robert Cage</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Karate</h5>
+                      <span>Donald Grey</span>
+                    </td>
+                    <td className="blank-td"></td>
+                  </tr>
+
+                  {/* Ligne 3 */}
+                  <tr>
+                    <td className="class-time">5.00pm - 7.00pm</td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Boxing</h5>
+                      <span>Rachel Adam</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Karate</h5>
+                      <span>Donald Grey</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>Body Building</h5>
+                      <span>Robert Cage</span>
+                    </td>
+                    <td className="blank-td"></td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>Yoga</h5>
+                      <span>Keaf Shen</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Cardio</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Fitness</h5>
+                      <span>Kimberly Stone</span>
+                    </td>
+                  </tr>
+
+                  {/* Ligne 4 */}
+                  <tr>
+                    <td className="class-time">7.00pm - 9.00pm</td>
+                    <td className="hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Cardio</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                    <td className="dark-bg blank-td"></td>
+                    <td className="hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Boxing</h5>
+                      <span>Rachel Adam</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>Yoga</h5>
+                      <span>Keaf Shen</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="motivation">
+                      <h5>Karate</h5>
+                      <span>Donald Grey</span>
+                    </td>
+                    <td className="dark-bg hover-bg ts-meta" data-tsmeta="fitness">
+                      <h5>Boxing</h5>
+                      <span>Rachel Adam</span>
+                    </td>
+                    <td className="hover-bg ts-meta" data-tsmeta="workout">
+                      <h5>WEIGHT LOOSE</h5>
+                      <span>RLefew D. Loee</span>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
+      </div>
+    </section> 
+        
         <br/>
         <br/>
         <br/>

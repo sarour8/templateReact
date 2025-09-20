@@ -13,6 +13,7 @@ import poidsImg from "assets/img/team/team5.jpg"
 import lastImg from "assets/img/team/team6.jpg"
 
 export default function Landing() {
+  
   return (
     <>
       <IndexNavbar transparent />
