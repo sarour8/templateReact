@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
@@ -9,6 +10,7 @@ import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Navbar() {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
+    const [isActive, setIsActive] = useState(false);
       const [scrollY, setScrollY] = React.useState(0);
     
       React.useEffect(() => {
@@ -29,6 +31,28 @@ export default function Navbar() {
           src={require("assets/img/logo.png").default}
           alt="..."
         />
+                  <ul className="flex flex-col  lg:flex-row items-center pl-20 justify-center mx-auto text-2xl font-bold text-gray-800">
+                    <li className="px-4">
+            <Link to="/MyProfile" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              My Profile
+            </Link>
+          </li>
+          <li className="px-4">
+            <Link to="/BookClass" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              Book Class
+            </Link>
+          </li>
+          <li className="px-4">
+            <Link to="/MyBookings" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              My Bookings
+            </Link>
+          </li>
+          <li className="px-4">
+            <Link to="/Shop" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              Shop 
+            </Link>
+          </li>
+          </ul>
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
             <div className="relative flex w-full flex-wrap items-stretch">
@@ -44,13 +68,20 @@ export default function Navbar() {
           </form>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex bg-black rounded ">
-            <button
-    className="flex items-center gap-2 bg-black text-white hover:bg-orange-500 active:bg-orange-500 px-4 py-2 rounded shadow outline-none focus:outline-none"
-    type="button"
-  >
-    <CiLogout className="text-lg" />
-    Logout
-  </button>
+             <button
+      onMouseDown={() => setIsActive(true)}
+      onMouseUp={() => setIsActive(false)}
+      onMouseLeave={() => setIsActive(false)}
+      className="flex items-center gap-2 bg-white hover:bg-blueGray-800 active:bg-blueGray-800 px-4 py-2 rounded shadow outline-none focus:outline-none transition-colors duration-150"
+    >
+      <CiLogout className={`text-lg ${isActive ? "text-white" : "text-black"} transition-colors duration-150`} />
+      <Link to="/">
+        <span className={`${isActive ? "text-white" : "text-black"} transition-colors duration-150`}>
+          Logout
+        </span>
+      </Link>
+    </button>
+
           </ul>
         </div>
       </nav>

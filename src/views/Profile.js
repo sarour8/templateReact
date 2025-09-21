@@ -2,6 +2,7 @@ import React from "react";
 
 import Navbar from "components/Navbars/ProfileNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import Progress from "components/Progress/Progress";
 
 export default function Profile() {
   return (
@@ -13,12 +14,12 @@ export default function Profile() {
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
              //backgroundImage: `url(${require("assets/img/classes/class-4.jpg").default})`,
-             backgroundColor: "black",
+             backgroundColor: "orange",
             }}
           >
             <span
               id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black"
+              className="w-full h-full absolute opacity-60 bg-orange-500"
             ></span>
           </div>
           <div
@@ -98,15 +99,15 @@ export default function Profile() {
   {/* Colonne gauche */}
   <div className="w-full md:w-5/12 pr-6  flex flex-col border-r border-white/30">
     <h3 className="text-4xl font-semibold mb-4 text-white">
-      Jenna Stones
+      Yessmine Mlayah
     </h3>
     <div className="text-sm mb-3 text-white flex items-center">
       <i className="fas fa-map-marker-alt mr-2 text-orange-500"></i>
-      Los Angeles, California
+      Sahloul, Sousse
     </div>
     <div className="mb-3 text-white flex items-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
-      +1 234 567 890
+      +216 234 567 890
     </div>
     <div className="mb-3 text-white flex items-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
@@ -120,19 +121,31 @@ export default function Profile() {
       <span className="font-bold text-white mr-2">Assigned Coach:</span>
       John Doe
     </div>
-    <div className="mb-3 text-white flex items-center">
+    <div className="mb-3 text-white flex items-center ml-16">
       <span className="font-bold text-white mr-2">Goal:</span>
       Improve Flexibility
     </div>
-    <div className="mb-3 text-white">
-      <span className="font-bold text-white mr-2">Progress:</span>
-      <div className="w-full bg-gray-700 rounded-full h-4 mt-1 overflow-hidden">
-        <div className="bg-orange-500 h-4 rounded-full" style={{ width: '60%' }}></div>
-      </div>
-      <span className="text-sm text-white mt-1 block">60%</span>
-    </div>
+   <Progress value={90} />
+   
+  
+
+
+  
+</div>
+
+
+
+
+
+
+
+</div>
+
     
   </div>
+  
+
+
 </div>
 
 
@@ -172,8 +185,8 @@ export default function Profile() {
                     </div>
                   </div>*/}
                 </div>
-              </div>
-            </div>
+              
+            
           
         </section>
       </main>

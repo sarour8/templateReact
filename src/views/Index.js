@@ -149,7 +149,7 @@ export default function Index() {
             <span className="text-orange-500 uppercase tracking-wider text-sm ">Our Services</span>
             <h2 className="text-4xl text-white font-bold mt-2">WHAT WE CAN OFFER</h2>
           </div>
-        <br/>
+          <br/>
         </div>
         <div className="container mx-auto ">
           <div className="flex flex-wrap items-center">

@@ -1262,7 +1262,7 @@ select {
   background-color: rgba(2, 132, 199, var(--tw-bg-opacity));
 }
 
-.active\:bg-blueGray-50:active {
+.active\:bg-blueGray-500:active {
   --tw-bg-opacity: 1;
   background-color: rgba(248, 250, 252, var(--tw-bg-opacity));
 }
@@ -1270,6 +1270,10 @@ select {
 .active\:bg-blueGray-600:active {
   --tw-bg-opacity: 1;
   background-color: rgba(71, 85, 105, var(--tw-bg-opacity));
+}
+.active\:bg-blueGray-800:active {
+  --tw-bg-opacity: 1;
+  background-color: rgba(50, 40, 100, var(--tw-bg-opacity));
 }
 
 .bg-center {
@@ -2455,6 +2459,7 @@ select {
   color: rgba(249, 115, 22, var(--tw-text-opacity));
 }
 
+
 .hover\:text-lightBlue-600:hover {
   --tw-text-opacity: 1;
   color: rgba(2, 132, 199, var(--tw-text-opacity));
@@ -2471,6 +2476,10 @@ select {
 }
 
 .hover\:text-blueGray-700:hover {
+  --tw-text-opacity: 1;
+  color: rgba(51, 65, 85, var(--tw-text-opacity));
+}
+.hover\:bg-blueGray-700:hover {
   --tw-text-opacity: 1;
   color: rgba(51, 65, 85, var(--tw-text-opacity));
 }
@@ -3194,6 +3203,7 @@ strong{
 .enroll-btn:active {
   background-color: #b84300; /* encore plus foncé au clic */
 }
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -3444,3 +3454,12 @@ strong{
 	font-size: 12px;
 	color: #a9a9a9;
 }
+.custom-progress div,
+.custom-progress span {
+  all: unset; /* supprime tout style forcé */
+}
+
+.custom-progress * {
+  all: revert; /* remet le comportement par défaut du navigateur */
+}
+
