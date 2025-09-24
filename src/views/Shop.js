@@ -1,129 +1,244 @@
-/*eslint-disable*/
 import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
-
-const productsData = [
-  {
-    id: 1,
-    name: "T-shirt Sport",
-    price: 25,
-    rating: 4,
-    image: require("assets/img/Shop/t-shirt.png").default,
-    description: "T-shirt confortable et respirant pour vos séances de sport.",
-  },
-  {
-    id: 2,
-    name: "Bouteille d'eau",
-    price: 15,
-    rating: 5,
-    image: require("assets/img/Shop/bouteille-1.png").default,
-    description: "Bouteille d'eau de 1L, pratique et légère.",
-  },
-  {
-    id: 3,
-    name: "Protéines en poudre",
-    price: 50,
-    rating: 4,
-    image: require("assets/img/Shop/proteine.png").default,
-    description: "Protéines de haute qualité pour récupération musculaire.",
-  },
-  {
-    id: 4,
-    name: "Short Sport",
-    price: 30,
-    rating: 3,
-    image: require("assets/img/Shop/short.png").default,
-    description: "Short léger et respirant pour tous types de sports.",
-  },
-];
+import { useEffect, useRef} from "react";
+import { Link } from "react-router-dom";
+import Card from "components/Cards/Card"
+import Footer from "components/Footers/Footer.js";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import basketImg from "../assets/img/Shop/basket.png";
+import pullImg from "../assets/img/Shop/image.png";
+import bouteille1Img from "../assets/img/Shop/buttle3.png";
+import buttle1Img from "../assets/img/Shop/buttle1.png";
+import buttle2Img from "../assets/img/Shop/buttle2.png";
+import glovesImg from "../assets/img/Shop/gloves.png";
+import proteineImg from "../assets/img/Shop/proteines.png";
+import tshirt1Img from "../assets/img/Shop/pull.png";
+import tshirt2Img from "../assets/img/Shop/pull1.png";
+import maskImg from "../assets/img/Shop/poids-de-dynamophilie.jpg";
+import proteine1Img from "../assets/img/Shop/proteines-et-gymnastique.jpg";
+import halterImg from "../assets/img/Shop/halter.png"
+import shoesImg from "../assets/img/Shop/shoes.png"
 
 export default function Shop() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  return (
-    <div className="bg-black min-h-screen py-12 px-6 md:px-12">
-      <h1 className="text-4xl font-bold text-orange-500 text-center mb-10">
-        Shop - Produits Sportifs
-      </h1>
+  // 🟠 Données variées
+  const cards = [
+    
+    {
+      id: 4,
+      name: "Water Buttle",
+       
+      price: "25  Dt",
+      rating: 3,
+      image: bouteille1Img,
+    },
+    {
+      id: 9,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt ",
+      rating: 4,
+      image: proteineImg,
+    },
+    
+    
+    {
+      id: 3,
+      name: "STRENGTH",
+      price: "40 Dt",
+      rating: 5,
+      image: tshirt2Img,
+    },
+    
+    {
+      id: 6,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt",
+      rating: 4,
+      image: buttle1Img,
+    },
+    {
+      id: 10,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt ",
+      rating: 4,
+      image: tshirt1Img,
+    },
+    {
+      id: 11,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt ",
+      rating: 4,
+      image: proteine1Img,
+    },
+    
+    
+     {
+      id: 7,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt ",
+      rating: 4,
+      image: buttle2Img,
+    },
+    
+    
+    {
+      id: 1,
+      name: "CARDIO",
+      description: "INDOOR CYCLING",
+      price: "30 Dt",
+      rating: 4,
+      image: basketImg,
+    },
+    {
+      id: 11,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt",
+      rating: 4,
+      image: pullImg,
+    },
+    {
+      id: 1,
+      name: "CARDIO",
+      description: "INDOOR CYCLING",
+      price: "30 Dt",
+      rating: 4,
+      image: shoesImg,
+    },
+   
+    {
+      id: 8,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt" ,
+      rating: 4,
+      image: glovesImg,
+    },
+    {
+      id: 12,
+      name: "STRENGTH",
+      description: "WEIGHTLIFTING",
+      price: "60 Dt" ,
+      rating: 3,
+      image: halterImg,
+    },
+    
+    
+    
+    
+  ];
+ 
+ 
 
-      {/* Grid produits */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {productsData.map((product) => (
+  return (
+    <>
+     <IndexNavbar fixed />
+     <main>
+     
+     <section className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
-            key={product.id}
-            className="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 relative"
+            className="absolute top-0 w-full h-full bg-center bg-cover"
+            style={{
+             backgroundImage: `url(${require("assets/img/discount.png").default})`,
+            }}
           >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-bold text-white">{product.name}</h2>
-              <p className="text-orange-500 font-semibold text-lg">${product.price}</p>
-              <div className="flex mt-2">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar
-                    key={i}
-                    className={`mr-1 ${i < product.rating ? "text-yellow-400" : "text-gray-500"}`}
-                  />
-                ))}
+            <span
+              id="blackOverlay"
+              className="w-full h-full absolute opacity-50 bg-black"
+            ></span>
+            </div>
+          </section>
+    <div className="container mx-auto mt-16">
+      <div className="flex flex-wrap items-center">
+        {cards.map((card) => (
+          <>
+           <Card key={card.id} card={card} />
+          <div
+          
+            key={card.id}
+            ref={ref}
+            className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto"
+          >
+            <div className="relative group overflow-hidden rounded-lg shadow-lg mb-6">
+              <img
+                alt={card.name}
+                src={card.image}
+                className="w-full h-56 object-cover rounded-t-lg"
+              />
+              <blockquote className="relative p-8 mb-4">
+                <h4 className="text-xl font-bold text-white">
+                  {card.name}
+                </h4>
+                <p className="text-xl font-light mt-2 text-orange-500 font-bold">
+                  {card.price}
+                </p>
+
+                {/* ⭐ Notes dynamiques */}
+                <div className="flex justify-left mb-4">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <span key={i}>{i < card.rating ? "⭐" : "☆"}</span>
+                  ))}
+                </div>
+
+                {/* 🔘 Bouton dynamique */}
+                <div className="mt-12  ">
+                <Link
+                  to="#"
+                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-orange-500 active:bg-orange-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                >
+                  See More
+                </Link>
+                
               </div>
-              <button
-                className="mt-4 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded transition-colors duration-200"
-                onClick={() => setSelectedProduct(product)}
-              >
-                See More
-              </button>
+              </blockquote>
             </div>
           </div>
-        ))}
+          </>
+))}
       </div>
 
-      {/* Modal détails produit */}
+      {/* Modal dynamique */}
       {selectedProduct && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedProduct(null)}
-        >
-          <div
-            className="bg-gray-900 rounded-lg shadow-2xl max-w-3xl w-full relative"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
+          <div className="bg-neutral-900 p-6 rounded-2xl shadow-xl relative max-w-md w-full text-center">
             <button
-              className="absolute top-4 right-4 text-white text-2xl font-bold"
               onClick={() => setSelectedProduct(null)}
+              className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl"
             >
-              ×
+              ✕
             </button>
-            <div className="flex flex-col md:flex-row">
-              <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name}
-                className="w-full md:w-1/2 h-80 object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none"
-              />
-              <div className="p-6 flex flex-col justify-between md:w-1/2">
-                <div>
-                  <h2 className="text-3xl font-bold text-orange-500 mb-4">{selectedProduct.name}</h2>
-                  <p className="text-white text-lg mb-4">{selectedProduct.description}</p>
-                  <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar
-                        key={i}
-                        className={`mr-1 ${i < selectedProduct.rating ? "text-yellow-400" : "text-gray-500"}`}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-orange-500 font-bold text-2xl mb-4">${selectedProduct.price}</p>
-                </div>
-                <button className="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded w-full transition-colors duration-200">
-                  Commander
-                </button>
-              </div>
-            </div>
+
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.name}
+              className="w-full h-56 object-contain rounded-lg mb-4"
+            />
+            <h2 className="text-xl font-bold mb-2">{selectedProduct.name}</h2>
+            <p className="text-gray-300 mb-4">
+              {selectedProduct.description}
+            </p>
+            <p className="text-orange-400 font-bold text-lg mb-4">
+              ${selectedProduct.price}
+            </p>
+            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">
+              Commander
+            </button>
           </div>
         </div>
       )}
     </div>
+    </main>
+    <br/>
+    <br/>
+    <Footer />
+    </>
   );
 }
+
+
+

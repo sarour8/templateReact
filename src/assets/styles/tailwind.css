@@ -3226,6 +3226,10 @@ strong{
 @keyframes blink {
   50% { border-color: transparent }
 }
+.fadeInUp {
+  opacity: 0; /* Initialement invisible */
+  animation: fadeInUp 1s ease-out forwards;
+}
 
 .typing-effect {
   display: inline-block;
