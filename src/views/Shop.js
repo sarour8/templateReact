@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useEffect, useRef} from "react";
+
 import { Link } from "react-router-dom";
-import Card from "components/Cards/Card"
+
 import Footer from "components/Footers/Footer.js";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import basketImg from "../assets/img/Shop/basket.png";
@@ -26,7 +26,7 @@ export default function Shop() {
     
     {
       id: 4,
-      name: "Water Buttle",
+      name: "Water Bottle",
        
       price: "25  Dt",
       rating: 3,
@@ -34,7 +34,7 @@ export default function Shop() {
     },
     {
       id: 9,
-      name: "STRENGTH",
+      name: "Protein powder ",
       description: "WEIGHTLIFTING",
       price: "60 Dt ",
       rating: 4,
@@ -44,7 +44,7 @@ export default function Shop() {
     
     {
       id: 3,
-      name: "STRENGTH",
+      name: "Sports t-shirt",
       price: "40 Dt",
       rating: 5,
       image: tshirt2Img,
@@ -52,15 +52,15 @@ export default function Shop() {
     
     {
       id: 6,
-      name: "STRENGTH",
+      name: "Water bottle",
       description: "WEIGHTLIFTING",
-      price: "60 Dt",
+      price: "20 Dt",
       rating: 4,
       image: buttle1Img,
     },
     {
       id: 10,
-      name: "STRENGTH",
+      name: "Sports t-shirt",
       description: "WEIGHTLIFTING",
       price: "60 Dt ",
       rating: 4,
@@ -68,7 +68,7 @@ export default function Shop() {
     },
     {
       id: 11,
-      name: "STRENGTH",
+      name: "Protein powder",
       description: "WEIGHTLIFTING",
       price: "60 Dt ",
       rating: 4,
@@ -78,7 +78,7 @@ export default function Shop() {
     
      {
       id: 7,
-      name: "STRENGTH",
+      name: "Protein powder",
       description: "WEIGHTLIFTING",
       price: "60 Dt ",
       rating: 4,
@@ -88,7 +88,7 @@ export default function Shop() {
     
     {
       id: 1,
-      name: "CARDIO",
+      name: "Sneakers",
       description: "INDOOR CYCLING",
       price: "30 Dt",
       rating: 4,
@@ -96,7 +96,7 @@ export default function Shop() {
     },
     {
       id: 11,
-      name: "STRENGTH",
+      name: "Sports t-shirt",
       description: "WEIGHTLIFTING",
       price: "60 Dt",
       rating: 4,
@@ -104,7 +104,7 @@ export default function Shop() {
     },
     {
       id: 1,
-      name: "CARDIO",
+      name: "Sneakers",
       description: "INDOOR CYCLING",
       price: "30 Dt",
       rating: 4,
@@ -113,7 +113,7 @@ export default function Shop() {
    
     {
       id: 8,
-      name: "STRENGTH",
+      name: "Boxing gloves",
       description: "WEIGHTLIFTING",
       price: "60 Dt" ,
       rating: 4,
@@ -121,7 +121,7 @@ export default function Shop() {
     },
     {
       id: 12,
-      name: "STRENGTH",
+      name: "Dumbbells",
       description: "WEIGHTLIFTING",
       price: "60 Dt" ,
       rating: 3,
@@ -140,7 +140,7 @@ export default function Shop() {
      <IndexNavbar fixed />
      <main>
      
-     <section className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+     <section className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75 ">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
@@ -153,16 +153,12 @@ export default function Shop() {
             ></span>
             </div>
           </section>
-    <div className="container mx-auto mt-16">
-      <div className="flex flex-wrap items-center">
+    <div className="container mx-auto mt-16  relative  fadeInUp">
+      <div className="flex flex-wrap items-center ">
         {cards.map((card) => (
-          <>
-           <Card key={card.id} card={card} />
-          <div
           
-            key={card.id}
-            ref={ref}
-            className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto"
+          <div
+            className=" hover:-mt-4 w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto"
           >
             <div className="relative group overflow-hidden rounded-lg shadow-lg mb-6">
               <img
@@ -198,7 +194,7 @@ export default function Shop() {
               </blockquote>
             </div>
           </div>
-          </>
+          
 ))}
       </div>
 

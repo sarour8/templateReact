@@ -10,6 +10,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 
 export default function Navbar(props) {
+  
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const [scrollY, setScrollY] = React.useState(0);
 
