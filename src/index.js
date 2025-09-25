@@ -21,6 +21,7 @@ import Classes from "views/Classes.js";
 import BookClass from "views/BookClass.js";
 import MyBookings from "views/MyBookings.js";
 import Shop from "views/Shop.js"
+import ClassDetails from "views/ClassDetails";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -38,6 +39,7 @@ ReactDOM.render(
       <Route path="/BookClass" exact component={BookClass} />
       <Route path="/MyBookings" exact component={MyBookings} />
       <Route path="/MyProfile" exact component={Profile} />
+      <Route path="/ClassDetails" exact component={ClassDetails} />
 
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
