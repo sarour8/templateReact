@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "components/Navbars/ProfileNavbar.js";
+import Navbar from 'components/Navbars/CoachNavbar'
 import Footer from "components/Footers/Footer.js";
 import Progress from "components/Progress/Progress";
 
@@ -51,7 +51,7 @@ export default function Profile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src={require("assets/img/members/member1.jpg").default}
+                        src={require("assets/img/members/member2.png").default}
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                       />
                       
@@ -63,14 +63,14 @@ export default function Profile() {
     
     
      <Link
-     to="/updateProfile"
+     to="/updateCoachProfile"
       className="bg-orange-500  active:bg-orange-500 mr-1 mb-1 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none ease-linear transition-all duration-150"
       type="button"
     >
       UPDATE
     </Link>
     <Link
-    to="/Profile"
+    to="/CoachProfile"
       className="bg-orange-500  active:bg-orange-500 mr-1 mb-1 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none ease-linear transition-all duration-150"
       type="button"
     >
@@ -115,29 +115,29 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-12 flex flex-col md:flex-row justify-center items-start gap-10 bg-gray-900 p-6 rounded-lg shadow-lg">
-  {/* Colonne gauche */}
-  <div className="w-full md:w-5/12 pr-6  flex flex-col border-r border-white/30">
-    <h3 className="text-4xl font-semibold mb-4 text-white">
-      Yessmine Mlayah
+                <div className="mt-12 flex flex-col  justify-center items-start gap-10 bg-gray-900 p-6 rounded-lg shadow-lg">
+  
+  <div className="w-full md:w-5/12 flex flex-col items-center text-center justify-center">
+    <h3 className="text-4xl font-bold mb-2 text-white">
+      Aziz Elmaher
     </h3>
-    <p className="font-semibold text-xl">Member</p>
-    <p className="font-bold text-xl">PARTICIPANT SINCE 2021</p><br/>
-    <div className="text-sm mb-3 text-white flex items-center">
+    <p className="font-semibold mb-1 text-xl">Coach</p>
+    <p className="font-bold text-sm">PARTICIPANT SINCE 2024</p><br/>
+    <div className="mt-4 text-sm mb-3 text-white flex items-center justify-center">
       <i className="fas fa-map-marker-alt mr-2 text-orange-500"></i>
       Sahloul, Sousse
     </div>
-    <div className="mb-3 text-white flex items-center">
+    <div className="mt-2 text-white flex items-center justify-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
-      +216 234 567 890
+      +216 252 567 890
     </div>
     <div className="mb-3 text-white flex items-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
-      jenna.stones@gmail.com
+      aziz.elmaher@gmail.com
     </div>
   </div>
 
-  {/* Colonne droite */}
+  {/* Colonne droite 
   <div className="w-full md:w-5/12 pl-6  flex flex-col">
     <div className="mb-3 text-white flex items-center">
       <span className="font-bold text-white mr-2">Assigned Coach:</span>
@@ -148,26 +148,10 @@ export default function Profile() {
       Improve Flexibility
     </div>
    <Progress value={90} />
-   
-  
+</div>*/}
 
-
-  
-</div>
-
-
-
-
-
-
-
-</div>
-
-    
+</div>  
   </div>
-  
-
-
 </div>
 
 

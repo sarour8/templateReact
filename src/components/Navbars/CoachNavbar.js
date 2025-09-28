@@ -33,23 +33,23 @@ export default function Navbar() {
         />
                   <ul className="flex flex-col  lg:flex-row items-center pl-20 justify-center mx-auto text-2xl font-bold text-gray-800">
                     <li className="px-4">
-            <Link to="/MyProfile" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+            <Link to="/MyProfileCoach" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
               My Profile
             </Link>
           </li>
           <li className="px-4">
-            <Link to="/BookClass" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
-              Book Class
+            <Link to="/MyClients" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              My Clients
             </Link>
           </li>
           <li className="px-4">
-            <Link to="/MyBookings" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
-              My Bookings
+            <Link to="/AddProgram" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              Add Program
             </Link>
           </li>
           <li className="px-4">
-            <Link to="/Shop" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
-              Shop 
+            <Link to="/AddExercise" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              Add exercise 
             </Link>
           </li>
           </ul>

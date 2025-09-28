@@ -1,11 +1,14 @@
-import React from "react";
+import React from 'react'
 import { Link } from "react-router-dom";
-import Navbar from "components/Navbars/ProfileNavbar.js";
+
 import Footer from "components/Footers/Footer.js";
 import Progress from "components/Progress/Progress";
 
-export default function Profile() {
+import Navbar from 'components/Navbars/CoachNavbar'
+
+export default function coachProfile() {
   return (
+   
     <>
       <Navbar transparent />
       <main className="profile-page">
@@ -51,7 +54,7 @@ export default function Profile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src={require("assets/img/members/member1.jpg").default}
+                        src={require("assets/img/members/member2.png").default}
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                       />
                       
@@ -119,25 +122,25 @@ export default function Profile() {
   {/* Colonne gauche */}
   <div className="w-full md:w-5/12 pr-6  flex flex-col border-r border-white/30">
     <h3 className="text-4xl font-semibold mb-4 text-white">
-      Yessmine Mlayah
+      Aziz Elmaher
     </h3>
-    <p className="font-semibold text-xl">Member</p>
-    <p className="font-bold text-xl">PARTICIPANT SINCE 2021</p><br/>
+    <p className="font-semibold text-xl">Coach</p>
+    <p className="font-bold text-xl">PARTICIPANT SINCE 2024</p><br/>
     <div className="text-sm mb-3 text-white flex items-center">
       <i className="fas fa-map-marker-alt mr-2 text-orange-500"></i>
       Sahloul, Sousse
     </div>
     <div className="mb-3 text-white flex items-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
-      +216 234 567 890
+      +216 255 567 890
     </div>
     <div className="mb-3 text-white flex items-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
-      jenna.stones@gmail.com
+      aziz.elmaher@gmail.com
     </div>
   </div>
 
-  {/* Colonne droite */}
+  {/* Colonne droite *
   <div className="w-full md:w-5/12 pl-6  flex flex-col">
     <div className="mb-3 text-white flex items-center">
       <span className="font-bold text-white mr-2">Assigned Coach:</span>
@@ -153,7 +156,7 @@ export default function Profile() {
 
 
   
-</div>
+</div>*/}
 
 
 
@@ -207,6 +210,7 @@ export default function Profile() {
                     </div>
                   </div>*/}
                 </div>
+                 
               
             
           
@@ -216,3 +220,4 @@ export default function Profile() {
     </>
   );
 }
+    

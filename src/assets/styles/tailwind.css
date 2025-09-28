@@ -1187,7 +1187,7 @@ select {
 }
 .active\:bg-orange-500:active {
   --tw-bg-opacity: 1;
-  background-color: rgba(249, 115, 22, var(--tw-bg-opacity));
+  background-color: rgba(200, 110, 15, var(--tw-bg-opacity));
 }
 
 .bg-red-200 {
@@ -1251,6 +1251,10 @@ select {
 .bg-grey-800{
   --tw-bg-opacity: 1;
   background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+}
+.active\:bg-grey:active {
+  --tw-bg-opacity: 1;
+  background-color: rgba(21, 21, 21, var(--tw-bg-opacity));
 }
 .active\:bg-indigo-600:active {
   --tw-bg-opacity: 1;

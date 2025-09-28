@@ -84,6 +84,8 @@ export default function MyBookings() {
         </table>
         <br/>
         <br/>
+        <br/>
+        <br/>
         <Footer />
     </div>
     </>

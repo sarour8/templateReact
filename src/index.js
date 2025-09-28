@@ -22,6 +22,13 @@ import BookClass from "views/BookClass.js";
 import MyBookings from "views/MyBookings.js";
 import Shop from "views/Shop.js"
 import ClassDetails from "views/ClassDetails";
+import UpdateProfile from "views/updateProfile";
+import CoachProfile from "views/CoachProfile";
+import MyProfileCoach from "views/MyProfileCoach";
+import MyClients from "views/MyClients";
+import AddExercise from "views/AddExercise";
+import AddProgram from "views/AddProgram";
+import UpdateCoachProfile from "views/updateProfile";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -34,12 +41,21 @@ ReactDOM.render(
       <Route path="/Shop" exact component={Shop} />
       <Route path="/Classes" exact component={Classes} />
       <Route path="/Contact" exact component={Contact} />
-      <Route path="/profile" exact component={Profile} />
+      <Route path="/Profile" exact component={Profile} />
+      <Route path="/CoachProfile" exact component={CoachProfile} />
+      <Route path="/MyClients" exact component={MyClients} />
+      <Route path="/AddExercise" exact component={AddExercise} />
+      <Route path="/AddProgram" exact component={AddProgram} />
+      <Route path="/UpdateCoachProfile" exact component={UpdateCoachProfile} />
+
+      <Route path="/MyProfileCoach" exact component={MyProfileCoach} />
       <Route path="/" exact component={Index} />
       <Route path="/BookClass" exact component={BookClass} />
       <Route path="/MyBookings" exact component={MyBookings} />
       <Route path="/MyProfile" exact component={Profile} />
       <Route path="/ClassDetails" exact component={ClassDetails} />
+       <Route path="/UpdateProfile" exact component={UpdateProfile} />
+       
 
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
