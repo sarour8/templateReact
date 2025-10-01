@@ -100,7 +100,7 @@ export default function coachProfile() {
                       </div>
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          89
+                          58
                         </span>
                         
                         <span className="text-sm text-blueGray-400">
@@ -118,23 +118,24 @@ export default function coachProfile() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-12 flex flex-col md:flex-row justify-center items-start gap-10 bg-gray-900 p-6 rounded-lg shadow-lg">
+                <div className="mt-12 flex flex-col justify-center items-center gap-10 bg-gray-900 p-6 rounded-lg shadow-lg">
   {/* Colonne gauche */}
-  <div className="w-full md:w-5/12 pr-6  flex flex-col border-r border-white/30">
+  <div className="w-full md:w-5/12 flex flex-col items-center text-center justify-center">
+
     <h3 className="text-4xl font-semibold mb-4 text-white">
       Aziz Elmaher
     </h3>
-    <p className="font-semibold text-xl">Coach</p>
-    <p className="font-bold text-xl">PARTICIPANT SINCE 2024</p><br/>
-    <div className="text-sm mb-3 text-white flex items-center">
+    <p className="font-semibold  mb-1 text-xl">Coach</p>
+    <p className="font-bold text-sm">PARTICIPANT SINCE 2024</p><br/>
+    <div className="mt-4 text-sm mb-3 text-white flex items-center justify-center">
       <i className="fas fa-map-marker-alt mr-2 text-orange-500"></i>
       Sahloul, Sousse
     </div>
-    <div className="mb-3 text-white flex items-center">
+    <div className="mt-2 text-white flex items-center justify-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
       +216 255 567 890
     </div>
-    <div className="mb-3 text-white flex items-center">
+    <div className="mb-3 text-white flex items-center justify-center">
       <i className="fas fa-phone-alt mr-2 text-orange-500"></i>
       aziz.elmaher@gmail.com
     </div>
@@ -151,13 +152,9 @@ export default function coachProfile() {
       Improve Flexibility
     </div>
    <Progress value={90} />
-   
-  
-
 
   
 </div>*/}
-
 
 
 
@@ -211,9 +208,7 @@ export default function coachProfile() {
                   </div>*/}
                 </div>
                  
-              
-            
-          
+                
         </section>
       </main>
       <Footer />

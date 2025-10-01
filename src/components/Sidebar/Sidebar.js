@@ -221,6 +221,15 @@ export default function Sidebar() {
                   Landing Page
                 </Link>
               </li>
+              <li className="items-center">
+                <Link
+                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  to="/CoachProfile"
+                >
+                  <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  Coach Profile
+                </Link>
+              </li>
 
               <li className="items-center">
                 <Link
@@ -228,7 +237,7 @@ export default function Sidebar() {
                   to="/profile"
                 >
                   <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Profile Page
+                   Member Profile 
                 </Link>
               </li>
             </ul>

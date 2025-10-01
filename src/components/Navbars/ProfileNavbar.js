@@ -31,7 +31,8 @@ export default function Navbar() {
           src={require("assets/img/logo.png").default}
           alt="..."
         />
-                  <ul className="flex flex-col  lg:flex-row items-center pl-20 justify-center mx-auto text-2xl font-bold text-gray-800">
+                  <ul className="flex flex-row flex-wrap items-center justify-center mx-auto text-lg font-bold text-white gap-4">
+
                     <li className="px-4">
             <Link to="/MyProfile" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
               My Profile
