@@ -13,3 +13,6 @@ export const updateWorkoutPlan = async (id, planData) => {
 export const addWorkoutPlan = async (planData) => {
     return await axios.post(`${apiUrl}/addWorkoutPlan`, planData);
 }   
+export async function getMembers() {
+    return await axios.get("http://localhost:5000/user/getMembers");
+}

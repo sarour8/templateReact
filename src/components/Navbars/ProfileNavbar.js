@@ -53,6 +53,11 @@ export default function Navbar() {
               Shop 
             </Link>
           </li>
+          <li className="px-4">
+            <Link to="/MyBookings" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+              My Plan
+            </Link>
+          </li>
           </ul>
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">

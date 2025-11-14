@@ -5,12 +5,21 @@ import { createPopper } from '@popperjs/core';
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
-import {addMember, getAllUsersSortedByFirstName, deleteUser,getAllUsers,getMembers,getPendingUsers,getUserByRole,searchUserByFirstName} from "../../services/apiuser"
+import {addUser, updateUserStatus,getAllUsersSortedByFirstName, getCoachs,deleteUserById ,getAllUsers,getMembers,getPendingUsers,getUserByRole,searchUserByFirstName} from "../../services/apiuser"
+import StatusCircle from "components/StatusCircle";
 
 export default function CardTable({ color }) {
   const [showModal, setShowModal] = React.useState(false);
   const [usersList, setUsersList] = useState([]);
   const [name, setName] = useState("");
+   const [newUser, setNewUser] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    email: "",
+    password: "",
+    user_image: "",
+  });
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -23,7 +32,23 @@ export default function CardTable({ color }) {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+   const [popoverShow, setPopoverShow] = React.useState(false);
+  const btnRef = React.createRef();
+  const popoverRef = React.createRef();
+  const openPopover = () => {
+    createPopper(btnRef.current, popoverRef.current, {
+      placement: "bottom",
+    });
+    setPopoverShow(true);
+  };
+  const closePopover = () => {
+    setPopoverShow(false);
+  };
 
+const handlechange = (e) => {
+    setNewUser({ ...newUser, [e.target.name]: e.target.value });
+    console.log(newUser);
+  };
 
 
   const getUsers = useCallback( async () => {
@@ -40,9 +65,52 @@ export default function CardTable({ color }) {
       
     }
   }, []);
-
-const searchUser = useCallback( async () => {
+  const getAllMembers = useCallback (async () => {
     try {
+      await getMembers().then((response) => {    
+        setUsersList(response.data);
+        console.log(response.data);
+        closeDropdownPopover();
+      });
+
+      
+    } catch (error) {
+      console.log("Error: ", error);
+      
+    }
+  }, []);
+  const getAllPendingUsers = useCallback (async () => {
+    try {
+      await getPendingUsers().then((response) => {    
+        setUsersList(response.data.pendingUsers);
+        console.log(response.data.pendingUsers);
+        closeDropdownPopover();
+      });
+
+      
+    } catch (error) {
+      console.log("Error: ", error);
+      
+    }
+  }, []);
+  const getAllCoachs = useCallback (async () => {
+    try {
+      await getCoachs().then((response) => {    
+        setUsersList(response.data);
+        console.log(response.data);
+        closeDropdownPopover();
+      });
+
+      
+    } catch (error) {
+      console.log("Error: ", error);
+      
+    }
+  }, []);
+
+const searchUser = async () => {
+    try {
+      console.log(name)
       await searchUserByFirstName(name).then((response) => {    
         setUsersList(response.data.usersList);
         console.log(response);
@@ -54,7 +122,22 @@ const searchUser = useCallback( async () => {
       console.log("Error: ", error);
       
     }
-  }, []);
+  };
+   const deleteUser = async (id) => {
+    try {
+      await deleteUserById(id)
+      
+        .then((response) => {
+          getUsers();
+          console.log("user deleted");
+        })
+        .catch((error) => {
+          console.log("Error while calling deleteUserById API ", error);
+        });
+    } catch (error) {
+      console.log("Error while calling getUsers API ", error);
+    }
+  };
 
   const getUsersOrdred = useCallback( async () => {
     try {
@@ -81,8 +164,34 @@ const searchUser = useCallback( async () => {
 
   }, []);
   useEffect(() => {
-      searchUser(name);
+    
+      searchUser();
     }, [name]);
+
+  const addNewUser = async () => {
+    try {
+      await addUser(newUser)
+        .then((response) => {
+          getUsers();
+          console.log("user added");
+        })
+        .catch((error) => {
+          console.log("Error while calling addUser API ", error);
+        });
+      setNewUser({
+        firstName: "",
+        lastName: "",
+      
+        email: "",
+        password: "",
+          role: "",
+      });
+    } catch (error) {
+      console.log("Error while calling getUsers API ", error);
+    }
+  };
+
+ 
 
   
   return (
@@ -99,66 +208,144 @@ const searchUser = useCallback( async () => {
   <h3 className={"font-semibold text-lg " + (color === "light" ? "text-blueGray-700" : "text-white")}>
     Users List
   </h3>
-  <button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+  {/*<button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
   onClick={()=> getUsersOrdred()}>
     Sort by Name
     
-  </button>
-
+  </button>*/}
+  <div className="flex items-center gap-3 mb-3 ">
+  <input
+    type="text"
+    placeholder="Search User"
+    className="flex-1 px-4 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded shadow text-sm outline-none focus:outline-none focus:shadow-outline"
+    onChange={(e) => setName(e.target.value)}
+  />
   <div className="flex flex-wrap">
-        <div className="w-full sm:w-6/12 md:w-4/12 px-4">
-          <div className="relative inline-flex align-middle w-full">
-            <button
-              className="text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 ease-linear transition-all duration-150"
-              type="button"
-              ref={btnDropdownRef}
-              onClick={() => {
-                dropdownPopoverShow
-                  ? closeDropdownPopover()
-                  : openDropdownPopover();
-              }}
-            >
-              lightBlue Dropdown
-            </button>
-            <div
-              ref={popoverDropdownRef}
-              className={
-                (dropdownPopoverShow ? "block " : "hidden ") +
-                "bg-lightBlue-500 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
-              }
-            >
-              <a
-                href="#pablo"
-                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-white"
-                onClick={()=> getUsersOrdred()}
-              >
-                Sort By Age
-              </a>
-              <a
-                href="#pablo"
-                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-white"
-               onClick={()=> getUsers()}
-              >
-                get All Users
-              </a>
-              <a
-                href="#pablo"
-                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-white"
-                onClick={e => e.preventDefault()}
-              >
-                Something else here
-              </a>
-              <div className="h-0 my-2 border border-solid border-t-0 border-blueGray-800 opacity-25" />
-              <a
-                href="#pablo"
-                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-white"
-                onClick={e => e.preventDefault()}
-              >
-                Seprated link
-              </a>
-            </div>
-          </div>
-        </div><button
+                <div className="w-full text-center ml-3">
+                  <button
+                    className="bg-grey text-white active:bg-orange-700 font-bold uppercase text-sm px-4 py-2 ml-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-3 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => {
+                      popoverShow ? closePopover() : openPopover();
+                    }}
+                    ref={btnRef}
+                  >
+                      ➕ Add Client
+                  </button>
+                  <div
+                    className={
+                      (popoverShow ? "" : "hidden ") +
+                      "bg-orange-500 border-0 justify-center   ml-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg "
+                    }
+                    ref={popoverRef}
+                  >
+                    <div className="ml-3">
+                      <div className="bg-orange-500 text-white opacity-100 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg">
+                        Add Client
+                      </div>
+                      <div className="text-white p-3">
+                        <div class="flex gap-4 mb-3">
+                          <input
+                            type="text"
+                            placeholder="First Name"
+                            name="firstName"
+                            value={newUser.firstName}
+
+                            class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-6/12"
+                            onChange={handlechange}
+                          />
+                          <input
+                            type="text"
+                            placeholder="Last Name"
+                            name="lastName"
+                            class="px-2 ml-2 py-1 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-6/12"
+                            onChange={handlechange}
+                                                        value={newUser.lastName}
+
+                          />
+                          <input
+                            type="text"
+                            placeholder="Role"
+                            name="role"
+                            class="px-2 py-1 ml-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-6/12"
+                            onChange={handlechange}
+                                                        value={newUser.role}
+
+                          />
+                        </div>
+                        <div class="flex gap-4 mb-3">
+                          <input
+                            type="text"
+                            placeholder="Email"
+                            name="email"
+                            class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-6/12"
+                            onChange={handlechange}
+                                                        value={newUser.email}
+
+                          />
+                          <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            class="px-2 ml-2 py-1 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-6/12"
+                            onChange={handlechange}
+                                                        value={newUser.password }
+
+                          />
+                        </div>
+                        <button
+                          className="bg-grey ml-2 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={() => {
+                            addNewUser();
+                            closePopover();
+                          }}
+                        >
+                          Add User
+                        </button>
+                        {/*<button
+                          className="bg-lightBlue-500 ml-2 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={() => getUserBetweenAges(minAge, maxAge)}
+                        >
+                          Add User with Image
+                        </button>*/}
+                      </div>
+                    </div>
+      </div>
+                  
+
+  <div className="relative inline-flex align-middle ml-3">
+    <button
+      className="text-white font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none bg-grey  active:bg-orange-700 ease-linear transition-all duration-150"
+      type="button"
+      ref={btnDropdownRef}
+      onClick={() => {
+        dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+      }}
+    >
+      Sort Users
+    </button>
+    <div
+      ref={popoverDropdownRef}
+      className={
+        (dropdownPopoverShow ? "block " : "hidden ") +
+        "absolute bg-orange-500 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
+      }
+    >
+      <a onClick={() => getUsersOrdred()} className="text-sm py-2 px-4 block text-white">Sort By Name</a>
+      <a onClick={() => getUsers()} className="text-sm py-2 px-4 block text-white">Get All Users</a>
+      <a onClick={() => getAllMembers()} className="text-sm py-2 px-4 block text-white">Get Members</a>
+      <a onClick={() => getAllCoachs()} className="text-sm py-2 px-4 block text-white">Get Coachs</a>
+      <a onClick={() => getAllPendingUsers()} className="text-sm py-2 px-4 block text-white">Get Pending Users</a>
+    </div>
+  </div>
+</div>
+ 
+
+{/*<div>
+        
+        <button
         className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={() => setShowModal(true)}
@@ -172,9 +359,9 @@ const searchUser = useCallback( async () => {
             onClick={() => setShowModal(false)}
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
-              {/*content*/}
+              {/*content*
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                {/*header*/}
+                {/*header*
                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                   <h3 className="text-3xl font-semibold">
                     Modal Title
@@ -188,7 +375,7 @@ const searchUser = useCallback( async () => {
                     </span>
                   </button>
                 </div>
-                {/*body*/}
+                {/*body
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
                     I always felt like I could do anything. That’s the main
@@ -198,7 +385,7 @@ const searchUser = useCallback( async () => {
                     won’t do anything. I was taught I could do everything.
                   </p>
                 </div>
-                {/*footer*/}
+                {/*footer*
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -221,13 +408,10 @@ const searchUser = useCallback( async () => {
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
-      </div>
+      </div>*/}
       
 </div>
-<div class="mb-3 pt-0 ml-90">
-  <input type="text" placeholder="Small Input" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
-  onChange={(e) =>setName(e.target.value)}/>
-</div>
+
 
 
           </div>
@@ -321,8 +505,15 @@ const searchUser = useCallback( async () => {
                   {user.lastName}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> pending
-                </td>
+  <StatusCircle
+    user={user}
+    onStatusChange={(id, newStatus) => {
+      setUsersList(prev =>
+        prev.map(u => (u._id === id ? { ...u, status: newStatus } : u))
+      );
+    }}
+  />
+</td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex">
                     {user.role}
@@ -349,12 +540,21 @@ const searchUser = useCallback( async () => {
                   </div>
 
                 </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <button className="bg-grey text-white active:bg-orange-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                      Update
-                    </button>
-                    <boutton className="bg-grey text-white active:bg-orange-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Delete</boutton>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2">
+  <div className="flex items-center gap-4">
+    <button
+      className="bg-grey  active:bg-orange-500 text-white font-bold uppercase text-xs px-4  py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-4 "
+      type="button"
+      onClick={() => setShowModal(user._id)}
+    >
+      Update
+    </button>
+    <button className="bg-grey active:bg-orange-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none"
+    type="button "
+    onClick={() => deleteUser( user._id )}>  
+      Delete
+    </button>
+  </div>
                     {/*<span className="mr-2">60%</span>
                     <div className="relative w-full">
                       <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
@@ -364,7 +564,55 @@ const searchUser = useCallback( async () => {
                         ></div>
                       </div>
                     </div>*/}
-                  </div>
+                    {showModal === user._id ? (
+    <>
+     <div
+  className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+  onClick={() => setShowModal(null)}
+>
+        <div
+    className="relative w-full max-w-5xl mx-auto my-6 transform transition-transform duration-300 ease-out scale-100"
+    style={{ animation: 'slide-up 0.3s ease-out forwards' }}
+  >
+          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+              <h3 className="text-3xl font-semibold">Modal Title</h3>
+              <button
+                className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl font-semibold outline-none focus:outline-none"
+                onClick={() => setShowModal(null)}
+              >
+                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+              </button>
+            </div>
+            <div className="relative p-6 flex-auto">
+              <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                Contenu du modal pour {user.firstName} {user.lastName}.
+              </p>
+            </div>
+            <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+              <button
+                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                type="button"
+                onClick={() => setShowModal(null)}
+              >
+                Close
+              </button>
+              <button
+                className="bg-emerald-500 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                type="button"
+                onClick={() => setShowModal(null)}
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+    </>
+  ) : null}
+
+                  
                 </td>
                 
               </tr>
@@ -630,6 +878,8 @@ const searchUser = useCallback( async () => {
           </table>
         </div>
       </div>
+      </div></div>
+           
     </>
   );
 }
