@@ -8,11 +8,13 @@ export const getAllUsers = async () => {
 export const deleteUserById = async (id) => {
     return await axios.delete(`${apiUrl}/deleteUserById/${id}`);
 }
-export const updateUser = async (id, userData) => {
-    return await axios.put(`${apiUrl}/updateUser/${id}`, userData);
+export const updateUser = async (id, updateData) => {
+    return await axios.put(`${apiUrl}/updateUser/${id}`, updateData);
 }
 export const  addUser = async (userData) => {
-    return await axios.post(`${apiUrl}/addUser`, userData);
+    return await axios.post(`${apiUrl}/addUser`, userData, {
+        headers: { "Content-Type": "multipart/form-data" },
+    });
 }   
 export async function searchUserByFirstName(name) {
     console.log(name);

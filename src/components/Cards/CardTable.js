@@ -1,6 +1,8 @@
 import React, {useEffect,useState, useCallback} from "react";
 import PropTypes from "prop-types";
 import { createPopper } from '@popperjs/core';
+import { useHistory } from "react-router-dom"; 
+import  {ToastContainer, toast} from 'react-toastify';  
 
 // components
 
@@ -129,6 +131,7 @@ const searchUser = async () => {
       
         .then((response) => {
           getUsers();
+          toast("So easy")
           console.log("user deleted");
         })
         .catch((error) => {
@@ -138,6 +141,7 @@ const searchUser = async () => {
       console.log("Error while calling getUsers API ", error);
     }
   };
+  const history = useHistory();
 
   const getUsersOrdred = useCallback( async () => {
     try {
@@ -167,10 +171,31 @@ const searchUser = async () => {
     
       searchUser();
     }, [name]);
+    const handlechangeImage = (e) => {
+    setImage(e.target.files[0]);
+    console.log(image);
+    };
 
+const [image, setImage] = useState();
+const formData = new FormData();
   const addNewUser = async () => {
     try {
-      await addUser(newUser)
+      formData.append("firstName", newUser.firstName);  
+      formData.append("lastName", newUser.lastName);  
+      formData.append("email", newUser.email);  
+      formData.append("password", newUser.password);
+      formData.append("role", newUser.role);
+      formData.append('user_Image', image , `${image.name}`)
+      // Champs spécifiques au coach
+  if (newUser.role === "coach") {
+    formData.append("specialty", newUser.specialty || "");
+    formData.append("experience", newUser.experience || "");
+    formData.append("certifications", newUser.certifications || "");
+  }
+  
+console.log(image)
+console.log(newUser);
+      await addUser(formData)
         .then((response) => {
           getUsers();
           console.log("user added");
@@ -202,6 +227,7 @@ const searchUser = async () => {
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
         }
       >
+        <ToastContainer/>
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex items-center justify-between">
@@ -213,17 +239,11 @@ const searchUser = async () => {
     Sort by Name
     
   </button>*/}
-  <div className="flex items-center gap-3 mb-3 ">
-  <input
-    type="text"
-    placeholder="Search User"
-    className="flex-1 px-4 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded shadow text-sm outline-none focus:outline-none focus:shadow-outline"
-    onChange={(e) => setName(e.target.value)}
-  />
-  <div className="flex flex-wrap">
-                <div className="w-full text-center ml-3">
+  <div className="flex flex-wrap items-center gap-3 w-full md:w-auto mt-2 md:mt-0">
+  <div className="flex flex-wrap w-full md:w-auto">
+                <div className="w-full text-center ">
                   <button
-                    className="bg-grey text-white active:bg-orange-700 font-bold uppercase text-sm px-4 py-2 ml-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-3 mb-1 ease-linear transition-all duration-150"
+                    className="bg-grey  text-white active:bg-orange-700  mr-300 font-bold uppercase text-sm px-6 py-3 ml-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-3 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
                       popoverShow ? closePopover() : openPopover();
@@ -235,12 +255,12 @@ const searchUser = async () => {
                   <div
                     className={
                       (popoverShow ? "" : "hidden ") +
-                      "bg-orange-500 border-0 justify-center   ml-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg "
+                      "bg-orange-500 border-0 justify-center mr-300 ml-0  block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg "
                     }
                     ref={popoverRef}
-                  >
-                    <div className="ml-3">
-                      <div className="bg-orange-500 text-white opacity-100 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg">
+                    >
+                    <div >
+                      <div className="bg-orange-500 text-white mr-7 opacity-100 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg">
                         Add Client
                       </div>
                       <div className="text-white p-3">
@@ -293,6 +313,15 @@ const searchUser = async () => {
 
                           />
                         </div>
+                        <input
+                            type="file"
+                          
+                            name="user_Image"
+                            class="px-2  py-1 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-6/12"
+                            onChange={handlechangeImage}
+                            //value={newUser.password }
+
+                          />
                         <button
                           className="bg-grey ml-2 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                           type="button"
@@ -310,11 +339,16 @@ const searchUser = async () => {
                         >
                           Add User with Image
                         </button>*/}
-                      </div>
+                  </div>
                     </div>
       </div>
                   
-
+ <input
+    type="text"
+    placeholder="Search User"
+    className="flex-1 px-4 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded shadow text-sm outline-none focus:outline-none focus:shadow-outline"
+    onChange={(e) => setName(e.target.value)}
+  />
   <div className="relative inline-flex align-middle ml-3">
     <button
       className="text-white font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none bg-grey  active:bg-orange-700 ease-linear transition-all duration-150"
@@ -545,7 +579,10 @@ const searchUser = async () => {
     <button
       className="bg-grey  active:bg-orange-500 text-white font-bold uppercase text-xs px-4  py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-4 "
       type="button"
-      onClick={() => setShowModal(user._id)}
+      onClick={()=>history.push({
+        pathname : "/admin/UpdateUser", 
+        state : {user : user }
+      })}
     >
       Update
     </button>
