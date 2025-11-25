@@ -29,6 +29,7 @@ import MyClients from "views/MyClients";
 import AddExercise from "views/AddExercise";
 import AddProgram from "views/AddProgram";
 import UpdateCoachProfile from "views/updateProfile";
+import MyPlan from "views/MyPlan";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -52,6 +53,7 @@ ReactDOM.render(
       <Route path="/" exact component={Index} />
       <Route path="/BookClass" exact component={BookClass} />
       <Route path="/MyBookings" exact component={MyBookings} />
+      <Route path="/MyPlan" exact component={MyPlan} />
       <Route path="/MyProfile" exact component={Profile} />
       <Route path="/ClassDetails" exact component={ClassDetails} />
        <Route path="/UpdateProfile" exact component={UpdateProfile} />
