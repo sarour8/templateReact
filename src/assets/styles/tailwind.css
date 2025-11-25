@@ -1748,6 +1748,9 @@ select {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
+.ml-22{
+   margin-left: 3rem;
+}
 
 .ml-2 {
   margin-left: 0.5rem;
@@ -1873,8 +1876,12 @@ select {
   margin-top: -5rem;
 }
 .-mt-29 {
+  margin-top: -45rem;
+}
+.-mt-999 {
   margin-top: -35rem;
 }
+
 
 
 .ml-20 {
