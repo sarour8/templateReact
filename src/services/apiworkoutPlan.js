@@ -16,3 +16,10 @@ export const addWorkoutPlan = async (planData) => {
 export async function getMembers() {
     return await axios.get("http://localhost:5000/user/getMembers");
 }
+export const  getWorkoutPlanById = async (id) => {
+    return await axios.get(`${apiUrl}/getWorkoutPlanById/${id}`);
+}
+// ✅ AJOUTEZ CETTE NOUVELLE FONCTION
+export const getPlansByMember = async (memberId) => {
+    return await axios.get(`${apiUrl}/getPlansByMember/${memberId}`);
+};
