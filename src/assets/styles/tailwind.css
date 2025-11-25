@@ -1731,6 +1731,9 @@ select {
 .ml-91 {
   margin-left: 2.1rem;
 }
+.ml-910 {
+  margin-left: 5.5rem;
+}
 
 .mt-2 {
   margin-top: 0.5rem;
@@ -1858,6 +1861,9 @@ select {
 
 .mt-48 {
   margin-top: 12rem;
+}
+.mt-480 {
+  margin-top: 35rem;
 }
 
 .mr-auto {
@@ -2131,6 +2137,9 @@ select {
 .pt-2 {
   padding-top: 0.5rem;
 }
+.pt-96 {
+  padding-top: 11rem;
+}
 
 .pb-2 {
   padding-bottom: 0.5rem;
@@ -2144,16 +2153,21 @@ select {
   padding-right: 1rem;
 }
 .pl-96 {
-  padding-right: 11rem;
+  padding-left: 7.2rem;
 }
 .pr-3{
   padding-right: 0.75rem;
+}
+.pr-96 {
+  padding-right: 10rem;
 }
 
 .pb-4 {
   padding-bottom: 1rem;
 }
-
+.pb-96 {
+  padding-bottom: 11rem;
+}
 .pl-4 {
   padding-left: 1rem;
 }
