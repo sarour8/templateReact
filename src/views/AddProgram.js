@@ -7,7 +7,7 @@ import { listExercises } from "../services/apiexercise";
 import yoga1Img from "assets/img/exercices/exercice1.jpg"
 import weightImg from "assets/img/exercices/exercice2.jpg"
 import karateImg from "assets/img/classes/girl.png.jpg"
-
+import UpdateProgram from "components/Modals/UpdateProgram";
 export default function AddProgram() {
   const staticImages = [
   { name: "Yoga", src: yoga1Img },
@@ -15,6 +15,8 @@ export default function AddProgram() {
   { name: "Cardio", src: karateImg },
   
 ];
+const [selectedProgram, setSelectedProgram] = useState(null);
+const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [programs, setPrograms] = useState([]);
   const [members, setMembers] = useState([]);
     const [exercises, setExercises] = useState([]); // ✅ liste d’exercices
@@ -207,7 +209,12 @@ const filteredExercises = exercises.filter((ex) =>
                   <td className="border-t-0 px-6 py-4">{program.duration}</td>
                   <td className="border-t-0 px-6 py-4">
                     <button className="bg-orange-500 text-white active:bg-orange-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
-                    onClick={() => deleteProgram(program._id)}>
+                  
+onClick={() => {
+  setSelectedProgram(program);
+  setShowUpdateModal(true); // ouvre le modal
+}}
+>
   Update
 </button>
                     <button className="bg-orange-500 text-white active:bg-orange-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
@@ -240,7 +247,7 @@ const filteredExercises = exercises.filter((ex) =>
 
         {/* Modal Add Program */}
         {showModal && (
-          <div className="fixed inset-0 bg-black flex justify-center items-center z-50 -mt-48 ml-99 mr-99 pl-3 pr-3 pt-2 pb-2 ">
+          <div className="fixed inset-0 bg-black flex justify-center items-center z-50  ml-99 mr-99 pl-3 pr-3 pt-2 pb-2 ">
             <div className="bg-gray-800 rounded-lg shadow-lg p-6 relative">
               <h2 className="text-lg text-orange-500 font-bold mb-4">Add Program</h2>
               <div className="space-y-4">
@@ -383,6 +390,16 @@ const filteredExercises = exercises.filter((ex) =>
           </div>
         )}
       </div>
+      {showUpdateModal && selectedProgram && (
+  <UpdateProgram
+    isOpen={showUpdateModal}
+    onClose={() => { setShowUpdateModal(false); setSelectedProgram(null); }}
+    program={selectedProgram}
+    exercisesList={exercises}
+    membersList={members}
+    onUpdated={getPrograms}
+  />
+)}
       <Footer />
     </>
   );
