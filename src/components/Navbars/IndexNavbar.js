@@ -42,21 +42,19 @@ export default function Navbar(props) {
           src={require("assets/img/logo.png").default}
           alt="..."
         />
-            {/*<button
-              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              <i className="fas fa-bars"></i>
-            </button>*/}
+           <button
+  className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent 
+             rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+  type="button"
+  onClick={() => setNavbarOpen(!navbarOpen)}
+>
+  <i className="fas fa-bars text-white text-3xl"></i>
+</button>
+
           </div>
           <div
-            className={
-              "lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none " +
-              (navbarOpen ? " block" : " hidden")
-            }
-            id="example-navbar-warning"
-          >
+  className="hidden lg:flex flex-grow items-center"
+>
             <ul className="flex flex-col  lg:flex-row items-center pl-20 justify-center mx-auto text-2xl font-bold text-gray-800">
   <li className="px-4">
     <Link to="/" className=" text-white hover:text-orange-500 transition-colors duration-200 text-lg ">
@@ -104,7 +102,7 @@ export default function Navbar(props) {
                 </a>*/}
               </li>
             </ul>
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <ul className="hidden lg:flex flex-row list-none lg:ml-auto">
               <li className="flex items-center">
                 <IndexDropdown />
               </li>
@@ -153,6 +151,24 @@ Login
             </ul>
           </div>
         </div>
+        
+{navbarOpen && (
+  <div className="fixed inset-0 bg-black  pb-96 pt-96 opacity-80 z-50 flex flex-col transition-colors duration-200 items-center justify-center space-y-8 text-white text-2xl text-center font-bold pl-96 pr-96 lg:hidden ml-9 mt-480">
+
+    <Link to="/" onClick={() => setNavbarOpen(false)} className="hover:text-orange-500">Home</Link>
+
+    <Link to="/Team" onClick={() => setNavbarOpen(false)} className="hover:text-orange-500">Our team</Link>
+
+    <Link to="/Classes" onClick={() => setNavbarOpen(false)} className="hover:text-orange-500">Classes</Link>
+
+    <Link to="/Contact" onClick={() => setNavbarOpen(false)} className="hover:text-orange-500">Contact</Link>
+
+    <Link to="/auth/Login" onClick={() => setNavbarOpen(false)} className="hover:text-orange-500">Log in</Link>
+
+    <Link to="/Shop" onClick={() => setNavbarOpen(false)} className="hover:text-orange-500">Shop</Link>
+  </div>
+)}
+
       </nav>
     </>
   );
