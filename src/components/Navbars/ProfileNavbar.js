@@ -54,7 +54,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li className="px-4">
-            <Link to="/MyBookings" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+            <Link to="/MyPlan" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
               My Plan
             </Link>
           </li>
