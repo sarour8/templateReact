@@ -1,7 +1,48 @@
-import React from "react";
+import React, { useState }  from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 export default function Register() {
+  // States pour le formulaire
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+   const handleRegister = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      const formData = new FormData();
+      formData.append("firstName", name);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("role", role); // Si tu ajoutes une image : formData.append("user_Image", file);
+
+
+      await axios.post("http://localhost:5000/user/registerUser", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      setSuccessMessage("Your account has been created successfully!");
+      setName("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(
+        error.response?.data?.message || "An error occurred. Please try again."
+      );
+    }
+
+    setLoading(false);
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -45,7 +86,21 @@ export default function Register() {
                 <div className="text-white  text-center mb-3 font-bold">
                   <small>Or sign up with credentials</small>
                 </div>
-                <form>
+                
+                {/* MESSAGE DE SUCCES */}
+                {successMessage && (
+                  <div className="bg-green-500 text-white p-2 mb-3 rounded text-center">
+                    {successMessage}
+                  </div>
+                )}
+
+                {/* MESSAGE D'ERREUR */}
+                {errorMessage && (
+                  <div className="bg-red-500 text-white p-2 mb-3 rounded text-center">
+                    {errorMessage}
+                  </div>
+                )}
+                <form onSubmit={handleRegister}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-white  text-xs font-bold mb-2"
@@ -54,10 +109,15 @@ export default function Register() {
                       Name
                     </label>
                     <input
-                      type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Name"
-                    />
+                        
+
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      required
+                      />
                   </div>
 
                   <div className="relative w-full mb-3">
@@ -69,8 +129,11 @@ export default function Register() {
                     </label>
                     <input
                       type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-white  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-black  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                       required
                     />
                   </div>
 
@@ -83,9 +146,32 @@ export default function Register() {
                     </label>
                     <input
                       type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      required
                     />
+                  </div>
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-white  text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Role
+                    </label>
+                    <select
+    id="role"
+    value={role}
+    onChange={(e) => setRole(e.target.value)}
+    className="border-0 px-3 py-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+    required
+  >
+    <option value="" disabled>Select your role</option>
+    <option value="member">Member</option>
+    <option value="coach">Coach</option>
+    <option value="admin">Admin</option>
+  </select>
                   </div>
 
                   <div>
@@ -94,6 +180,7 @@ export default function Register() {
                         id="customCheckLogin"
                         type="checkbox"
                         className="form-checkbox border-0 rounded text-orange-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                        required
                       />
                       <span className="ml-2 text-sm font-semibold text-white ">
                         I agree with the{" "}
@@ -110,10 +197,14 @@ export default function Register() {
 
                   <div className="text-center mt-6">
                     <button
-                      className="bg-orange-500 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
+                      
+                      type="submit"
+                      disabled={loading}
+                   className="bg-orange-500 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     >
-                      Create Account
+                      {loading ? "Creating account..." : "Create Account"}
+                      
+              
                     </button>
                   </div>
                 </form>
