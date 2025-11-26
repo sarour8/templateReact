@@ -1,18 +1,31 @@
 /*eslint-disable*/
 import React from "react";
-import  { useState } from "react";
-import { Link } from "react-router-dom";
+import  { useState, useContext  } from "react";
+
+import { Link, useHistory } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import {AuthContext} from "../../context/AuthContext"
+
 
 
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Navbar() {
+  const { logout, user } = useContext(AuthContext);
+    const history = useHistory();
+       const [showLogoutMsg, setShowLogoutMsg] = useState(false);
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     const [isActive, setIsActive] = useState(false);
       const [scrollY, setScrollY] = React.useState(0);
-    
+      const handleLogout = () => {
+    logout(); // supprime le user / token
+    setShowLogoutMsg(true); // afficher le message
+    setTimeout(() => {
+      setShowLogoutMsg(false);
+      history.push("/"); // rediriger vers login
+    }, 0); // 2 secondes avant redirection
+  };
       React.useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
         window.addEventListener("scroll", handleScroll);
@@ -34,7 +47,7 @@ export default function Navbar() {
                   <ul className="flex flex-row flex-wrap items-center justify-center mx-auto text-lg font-bold text-white gap-4">
 
                     <li className="px-4">
-            <Link to="/MyProfile" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
+            <Link to="/Profile" className=" text-white hover:text-blueGray-700 transition-colors duration-200 text-lg ">
               My Profile
             </Link>
           </li>
