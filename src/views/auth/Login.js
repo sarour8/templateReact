@@ -1,19 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link,  useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
+
+  const { login } = useContext(AuthContext);
+  const history = useHistory();
+
+  // States
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const user = await login(email, password, { withCredentials: true });
+
+      console.log(user);
+
+      if (user.role === "admin") {history.push("/admin/dashboard");
+      return;
+      }
+      else if (user.role === "coach") {history.push("/MyProfileCoach");
+        return;
+      }
+      else if (user.role === "member") {history.push("/Profile");
+        return;
+      }
+      else {
+        history.push("/unauthorized");
+        return;
+      }
+
+
+    } catch (error) {
+      console.log("Login error", error);
+      alert("Email ou mot de passe incorrect");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg  border-1 animate-fadeInUp"
-              style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
+            <div
+              className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-1 animate-fadeInUp"
+              style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
+            >
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
-                  <h6 className="text-white text-sm font-bold">
-                    Sign in with
-                  </h6>
+                  <h6 className="text-white text-sm font-bold">Sign in with</h6>
                 </div>
                 <div className="btn-wrapper text-center">
                   <button
@@ -41,38 +83,46 @@ export default function Login() {
                 </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
               </div>
+
+              {/* FORM */}
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <div className="text-white text-center mb-3 font-bold">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form>
+
+                <form onSubmit={handleLogin}>
+
+                  {/* EMAIL */}
                   <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-white text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
+                    <label className="block uppercase text-white text-xs font-bold mb-2">
                       Email
                     </label>
                     <input
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      required
                     />
                   </div>
 
+                  {/* PASSWORD */}
                   <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-white text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
+                    <label className="block uppercase text-white text-xs font-bold mb-2">
                       Password
                     </label>
                     <input
                       type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      required
                     />
                   </div>
+
+                  {/* REMEMBER */}
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
@@ -86,23 +136,25 @@ export default function Login() {
                     </label>
                   </div>
 
+                  {/* SIGN IN BUTTON */}
                   <div className="text-center mt-6">
                     <button
                       className="bg-orange-500 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
+                      type="submit"
+                      disabled={loading}
                     >
-                      Sign In
+                      {loading ? "Signing in..." : "Sign In"}
                     </button>
                   </div>
+
                 </form>
               </div>
             </div>
-            <div className="flex flex-wrap mt-6 relative  ">
-              <div className="w-1/2  ">
-                <Link 
-                  to="/auth/forget"
-                  className="text-blueGray-200" 
-                >
+
+            {/* LINKS */}
+            <div className="flex flex-wrap mt-6 relative">
+              <div className="w-1/2">
+                <Link to="/auth/forget" className="text-blueGray-200">
                   <small>Forgot password?</small>
                 </Link>
               </div>
@@ -112,6 +164,7 @@ export default function Login() {
                 </Link>
               </div>
             </div>
+
           </div>
         </div>
       </div>
