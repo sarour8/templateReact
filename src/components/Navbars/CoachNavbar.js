@@ -1,17 +1,29 @@
 /*eslint-disable*/
 import React from "react";
-import  { useState } from "react";
-import { Link } from "react-router-dom";
+import  { useState, useContext  } from "react";
+import { Link, useHistory} from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import {AuthContext} from "../../context/AuthContext"
 
 
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Navbar() {
+  const { logout, user } = useContext(AuthContext);
+  const history = useHistory();
+   const [showLogoutMsg, setShowLogoutMsg] = useState(false);
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     const [isActive, setIsActive] = useState(false);
       const [scrollY, setScrollY] = React.useState(0);
+      const handleLogout = () => {
+    logout(); // supprime le user / token
+    setShowLogoutMsg(true); // afficher le message
+    setTimeout(() => {
+      setShowLogoutMsg(false);
+      history.push("/"); // rediriger vers login
+    }, 0); // 2 secondes avant redirection
+  };
     
       React.useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
@@ -73,14 +85,13 @@ export default function Navbar() {
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
       onMouseLeave={() => setIsActive(false)}
+      onClick={handleLogout}
       className="flex items-center gap-2 bg-white hover:bg-gray active:bg-grey px-4 py-2 rounded shadow outline-none focus:outline-none transition-colors duration-150"
     >
       <CiLogout className={`text-lg ${isActive ? "text-white" : "text-black"} transition-colors duration-150`} />
-      <Link to="/">
-        <span className={`${isActive ? "text-white" : "text-black"} transition-colors duration-150`}>
-          Logout
-        </span>
-      </Link>
+      <span className={`${isActive ? "text-white" : "text-black"} transition-colors duration-150`}>
+                Logout
+              </span>
     </button>
 
           </ul>
