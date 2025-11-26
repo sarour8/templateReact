@@ -5,63 +5,146 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
 
-// layouts
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRouter";
 
+// layouts
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
 
-
-// views without layouts
-
+// Public pages
 import Team from "views/Team.js";
 import Contact from "views/Contact.js";
-import Profile from "views/Profile.js";
 import Index from "views/Index.js";
+import Shop from "views/Shop.js";
+
+// Member pages
 import Classes from "views/Classes.js";
-import BookClass from "views/BookClass.js";
-import MyBookings from "views/MyBookings.js";
-import Shop from "views/Shop.js"
+import BookClass from "views/BookClass";
+import MyBookings from "views/MyBookings";
 import ClassDetails from "views/ClassDetails";
+import MyPlan from "views/MyPlan";
+import Profile from "views/Profile";
+
+// Shared user pages
+
 import UpdateProfile from "views/updateProfile";
+
+// Coach pages
 import CoachProfile from "views/CoachProfile";
 import MyProfileCoach from "views/MyProfileCoach";
 import MyClients from "views/MyClients";
 import AddExercise from "views/AddExercise";
 import AddProgram from "views/AddProgram";
 import UpdateCoachProfile from "views/updateProfile";
-import MyPlan from "views/MyPlan";
+
+// ROLES
+const ROLE_ADMIN = "admin";
+const ROLE_COACH = "coach";
+const ROLE_MEMBER = "member";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      {/* add routes with layouts */}
-      <Route path="/admin" component={Admin} />
-      <Route path="/auth" component={Auth} />
-      {/* add routes without layouts */}
-      <Route path="/Team" exact component={Team} />
-      <Route path="/Shop" exact component={Shop} />
-      <Route path="/Classes" exact component={Classes} />
-      <Route path="/Contact" exact component={Contact} />
-      <Route path="/Profile" exact component={Profile} />
-      <Route path="/CoachProfile" exact component={CoachProfile} />
-      <Route path="/MyClients" exact component={MyClients} />
-      <Route path="/AddExercise" exact component={AddExercise} />
-      <Route path="/AddProgram" exact component={AddProgram} />
-      <Route path="/UpdateCoachProfile" exact component={UpdateCoachProfile} />
+  <AuthProvider>
+    <BrowserRouter>
+      <Switch>
 
-      <Route path="/MyProfileCoach" exact component={MyProfileCoach} />
-      <Route path="/" exact component={Index} />
-      <Route path="/BookClass" exact component={BookClass} />
-      <Route path="/MyBookings" exact component={MyBookings} />
-      <Route path="/MyPlan" exact component={MyPlan} />
-      <Route path="/MyProfile" exact component={Profile} />
-      <Route path="/ClassDetails" exact component={ClassDetails} />
-       <Route path="/UpdateProfile" exact component={UpdateProfile} />
-       
+        {/* PUBLIC ROUTES */}
+        <Route path="/" exact component={Index} />
+        <Route path="/Team" exact component={Team} />
+        <Route path="/Shop" exact component={Shop} />
+        <Route path="/Contact" exact component={Contact} />
 
-      {/* add redirect for first page */}
-      <Redirect from="*" to="/" />
-    </Switch>
-  </BrowserRouter>,
+        {/* AUTH ROUTES */}
+        <Route path="/auth" component={Auth} />
+
+        {/* ADMIN */}
+        <ProtectedRoute
+          path="/admin"
+          roles={[ROLE_ADMIN]}
+          component={Admin}
+        />
+
+        {/* MEMBER ONLY */}
+        <ProtectedRoute
+          path="/Profile"
+          roles={[ROLE_MEMBER]}
+          component={Profile}
+        />
+        <ProtectedRoute
+          path="/Classes"
+          roles={[ROLE_MEMBER]}
+          component={Classes}
+        />
+        <ProtectedRoute
+          path="/BookClass"
+          roles={[ROLE_MEMBER]}
+          component={BookClass}
+        />
+        <ProtectedRoute
+          path="/MyBookings"
+          roles={[ROLE_MEMBER]}
+          component={MyBookings}
+        />
+        <ProtectedRoute
+          path="/ClassDetails"
+          roles={[ROLE_MEMBER]}
+          component={ClassDetails}
+        />
+        <ProtectedRoute
+          path="/MyPlan"
+          roles={[ROLE_MEMBER]}
+          component={MyPlan}
+        />
+
+        {/* COACH ONLY */}
+        <ProtectedRoute
+          path="/CoachProfile"
+          roles={[ROLE_COACH]}
+          component={CoachProfile}
+        />
+        <ProtectedRoute
+          path="/MyProfileCoach"
+          roles={[ROLE_COACH]}
+          component={MyProfileCoach}
+        />
+        <ProtectedRoute
+          path="/MyClients"
+          roles={[ROLE_COACH]}
+          component={MyClients}
+        />
+        <ProtectedRoute
+          path="/AddExercise"
+          roles={[ROLE_COACH]}
+          component={AddExercise}
+        />
+        <ProtectedRoute
+          path="/AddProgram"
+          roles={[ROLE_COACH]}
+          component={AddProgram}
+        />
+        <ProtectedRoute
+          path="/UpdateCoachProfile"
+          roles={[ROLE_COACH]}
+          component={UpdateCoachProfile}
+        />
+
+        {/* SHARED PROTECTED (MEMBER + COACH + ADMIN) */}
+        <ProtectedRoute
+          path="/Profile"
+          roles={[ROLE_MEMBER, ROLE_COACH, ROLE_ADMIN]}
+          component={Profile}
+        />
+        <ProtectedRoute
+          path="/UpdateProfile"
+          roles={[ROLE_MEMBER, ROLE_COACH, ROLE_ADMIN]}
+          component={UpdateProfile}
+        />
+
+        {/* REDIRECT ALL */}
+        <Redirect to="/" />
+
+      </Switch>
+    </BrowserRouter>
+  </AuthProvider>,
   document.getElementById("root")
 );
